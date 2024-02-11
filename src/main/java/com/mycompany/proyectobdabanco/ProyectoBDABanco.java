@@ -12,5 +12,7 @@ public class ProyectoBDABanco {
 
     public static void main(String[] args) {
         System.out.println("hola");
+        
+        int hola = 0;
     }
 }
