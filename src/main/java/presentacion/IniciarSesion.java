@@ -22,6 +22,7 @@ public class IniciarSesion extends javax.swing.JFrame {
 ImageIcon imageIcon = new ImageIcon("Utilerias/R.jpg"); 
         JLabel label = new JLabel(imageIcon);
 PantallaUno p1 = new PantallaUno();
+PantallaPrincipal pp = new PantallaPrincipal();
     /**
      * Creates new form InicioSesion
      */
@@ -75,6 +76,11 @@ PantallaUno p1 = new PantallaUno();
         });
 
         jButton2.setText("SIGUIENTE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,6 +142,11 @@ PantallaUno p1 = new PantallaUno();
        dispose();
        p1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+      dispose();
+       pp.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

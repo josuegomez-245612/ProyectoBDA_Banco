@@ -21,6 +21,7 @@ import javax.swing.SwingUtilities;
 public class PantallaUno extends javax.swing.JFrame {
 ImageIcon imageIcon = new ImageIcon("Utilerias/R.jpg"); 
         JLabel label = new JLabel(imageIcon);
+        PantallaPrincipalInvitado pi = new PantallaPrincipalInvitado();
 
     /**
      * Creates new form InicioSesion
@@ -68,6 +69,11 @@ ImageIcon imageIcon = new ImageIcon("Utilerias/R.jpg");
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton2.setText("INGRESAR COMO INVITADO");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton3.setText("INICIAR SESION");
@@ -82,11 +88,14 @@ ImageIcon imageIcon = new ImageIcon("Utilerias/R.jpg");
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(306, 306, 306)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
+                        .addGap(306, 306, 306)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jButton3)
+                        .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
@@ -94,11 +103,6 @@ ImageIcon imageIcon = new ImageIcon("Utilerias/R.jpg");
                                 .addComponent(jButton2))
                             .addComponent(jLabel2))))
                 .addContainerGap(146, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(149, 149, 149)
-                    .addComponent(jButton3)
-                    .addContainerGap(746, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,13 +114,9 @@ ImageIcon imageIcon = new ImageIcon("Utilerias/R.jpg");
                 .addGap(106, 106, 106)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap(204, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(203, 203, 203)
-                    .addComponent(jButton3)
-                    .addContainerGap(205, Short.MAX_VALUE)))
         );
 
         pack();
@@ -134,6 +134,11 @@ ImageIcon imageIcon = new ImageIcon("Utilerias/R.jpg");
         dispose();
         pantallaInicioSesion.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       dispose();
+       pi.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
