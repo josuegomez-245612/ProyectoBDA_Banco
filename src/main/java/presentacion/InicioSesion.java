@@ -92,6 +92,10 @@ class FondoPanel extends JPanel{
     @Override
     public void paint (Graphics g){
         imagen = new ImageIcon(getClass().getResource("/Utilerias/R.jpg")).getImage();
+        
+        g.drawImage(imagen, getWidth(), getHeight(), this);
+        
+        setOpaque(false);
     }
 }
 
