@@ -11,4 +11,20 @@
         <maven.compiler.target>18</maven.compiler.target>
         <exec.mainClass>com.mycompany.proyectobdabanco.ProyectoBDABanco</exec.mainClass>
     </properties>
+  <dependencies>
+    <!-- Dependencia para JCalendar -->
+    <dependency>
+        <groupId>com.toedter</groupId>
+        <artifactId>jcalendar</artifactId>
+        <version>1.4</version> <!-- Reemplaza con la versión más reciente disponible -->
+      <type>jar</type>
+    </dependency>
+
+    <!-- Dependencia para MySQL Connector/J -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.28</version> <!-- Reemplaza con la versión más reciente disponible -->
+    </dependency>
+</dependencies>
 </project>
