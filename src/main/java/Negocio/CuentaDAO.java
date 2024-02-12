@@ -20,8 +20,12 @@ import presentacion.Registro;
  * @author JOSUE GOMEZ
  */
 public class CuentaDAO {
+
+    public CuentaDAO() {
+    }
+    
   Conexion con = new Conexion();
-  Registro res = new Registro();
+  Registro res;
   
   public boolean restriccionesRegistro(Calendar selectedDate, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio) {
     int selectedYear = selectedDate.get(Calendar.YEAR);

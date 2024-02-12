@@ -28,6 +28,9 @@ public class CuentaDTO {
          cuentas.add(this);
     }
 
+    public CuentaDTO() {
+    }
+
     // Getters y Setters
     public int getNumeroCuenta() {
         return numeroCuenta;
