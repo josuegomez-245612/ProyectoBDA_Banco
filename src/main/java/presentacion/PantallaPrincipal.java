@@ -4,6 +4,7 @@
  */
 package presentacion;
 
+import Negocio.CuentaDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,7 +12,8 @@ import javax.swing.JOptionPane;
  * @author RAUL EDUARDO GOMEZ
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-PantallaTransaccion pt;
+PantallaTransaccion pt = new PantallaTransaccion();
+PantallaUno p1 = new PantallaUno();
     /**
      * Creates new form PantallaPrincipal
      */
@@ -40,6 +42,7 @@ PantallaTransaccion pt;
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -85,6 +88,11 @@ PantallaTransaccion pt;
         jMenu3.setText("Cuenta");
 
         jMenuItem2.setText("Informacion del usuario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem2);
 
         jMenuItem1.setText("Eliminar cuenta");
@@ -92,6 +100,14 @@ PantallaTransaccion pt;
 
         jMenuItem5.setText("Crear otra cuenta vinculada");
         jMenu3.add(jMenuItem5);
+
+        jMenuItem6.setText("Cerrar Sesion");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
 
         jMenuBar1.add(jMenu3);
 
@@ -158,6 +174,15 @@ PantallaTransaccion pt;
                                            Num de contacto: 6442586327""");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+      JOptionPane.showMessageDialog(null,"Nombre: " +Registro.cliente.getNombre()+" Numero de cuenta " +CuentaDAO.NumeroDeCuenta);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+       dispose();
+      p1.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -206,6 +231,7 @@ PantallaTransaccion pt;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JLabel nombrePantalla;
     private javax.swing.JMenuItem transaccionAccionPerformed;
     // End of variables declaration//GEN-END:variables

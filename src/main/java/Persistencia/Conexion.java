@@ -22,7 +22,7 @@ public class Conexion {
     String cadena = "jdbc:mysql://" + ip + ":" + puerto + "/" + bd;
 
     // Paso 3: Método para establecer la conexión
-    public Connection estableceConexion() {
+    public  Connection estableceConexion() {
         try {
             // Paso 4: Cargar el controlador JDBC
             Class.forName("com.mysql.jdbc.Driver");

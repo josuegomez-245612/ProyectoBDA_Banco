@@ -8,6 +8,7 @@ import Persistencia.ClienteDTO;
 import Persistencia.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -27,7 +28,7 @@ public class CuentaDAO {
     
   Conexion con = new Conexion();
   Registro res;
-  
+ public static int NumeroDeCuenta;
   public boolean restriccionesRegistro(Calendar selectedDate, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio) {
     int selectedYear = selectedDate.get(Calendar.YEAR);
     int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -45,11 +46,37 @@ public class CuentaDAO {
 
     return true;
 }
+  
+ public boolean restriccionInicioDeSesion(String numeroCuenta, String contrasena) throws SQLException {
+        if (numeroCuenta.isEmpty() || contrasena.isEmpty()) {
+            System.out.println("Error: Los campos no pueden estar vacíos.");
+            return false;
+        }
+
+        try (Connection conn = con.estableceConexion();
+             PreparedStatement statement = conn.prepareStatement(
+                     "SELECT * FROM Cliente c " +
+                     "JOIN Cuenta cu ON c.ID_Cliente = cu.ID_Cliente " +
+                     "WHERE cu.Numero_Cuenta = ? AND c.Contraseña = ?")) {
+            statement.setString(1, numeroCuenta);
+            statement.setString(2, contrasena);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return true; // Credenciales correctas
+            } else {
+                System.out.println("Las credenciales son incorrectas.");
+                return false;
+            }
+        }
+    }
+
     public static String generarNumeroCuenta() {
         Random random = new Random();
         // Generar un número aleatorio de 8 dígitos
         int numero = random.nextInt(90000000) + 10000000;
+        NumeroDeCuenta = numero;
         return String.valueOf(numero);
+        
     }
     
   public int calcularEdad(Date fechaNacimiento) {
@@ -89,6 +116,7 @@ public class CuentaDAO {
     statement2.setString(1, generarNumeroCuenta());
     statement2.executeUpdate();
     System.out.println("Cuenta agregada correctamente.");
+    JOptionPane.showMessageDialog(null," Numero de cuenta creado: "+NumeroDeCuenta);
 } catch (SQLException e) {
     e.printStackTrace();
 }
