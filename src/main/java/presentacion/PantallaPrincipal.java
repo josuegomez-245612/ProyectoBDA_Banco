@@ -5,6 +5,8 @@
 package presentacion;
 
 import Negocio.CuentaDAO;
+import Persistencia.ClienteDTO;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,8 +14,10 @@ import javax.swing.JOptionPane;
  * @author RAUL EDUARDO GOMEZ
  */
 public class PantallaPrincipal extends javax.swing.JFrame {
-PantallaTransaccion pt = new PantallaTransaccion();
+
 PantallaUno p1 = new PantallaUno();
+public static ClienteDTO cliente = new ClienteDTO();
+
     /**
      * Creates new form PantallaPrincipal
      */
@@ -30,10 +34,11 @@ PantallaUno p1 = new PantallaUno();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nombrePantalla = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         transaccionAccionPerformed = new javax.swing.JMenuItem();
@@ -48,6 +53,8 @@ PantallaUno p1 = new PantallaUno();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1080, 720));
+
+        jPanel1.setBackground(new java.awt.Color(153, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel1.setText("Bienvenido al sistema bancario BANCOMEX");
@@ -64,11 +71,41 @@ PantallaUno p1 = new PantallaUno();
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("!");
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Bienvenido,");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setText("!");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nombrePantalla)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jLabel1)))
+                .addContainerGap(321, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(nombrePantalla)
+                    .addComponent(jLabel5))
+                .addContainerGap(574, Short.MAX_VALUE))
+        );
 
         jMenu1.setText("Operaciones");
 
@@ -99,6 +136,11 @@ PantallaUno p1 = new PantallaUno();
         jMenu3.add(jMenuItem1);
 
         jMenuItem5.setText("Crear otra cuenta vinculada");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuItem6.setText("Cerrar Sesion");
@@ -129,30 +171,11 @@ PantallaUno p1 = new PantallaUno();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(nombrePantalla)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addGap(155, 155, 155)))
-                .addContainerGap(278, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(nombrePantalla)
-                    .addComponent(jLabel5))
-                .addContainerGap(574, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -160,8 +183,8 @@ PantallaUno p1 = new PantallaUno();
     }// </editor-fold>//GEN-END:initComponents
 
     private void transaccionAccionPerformedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaccionAccionPerformedActionPerformed
-      dispose();
-      pt.setVisible(true);
+        PantallaTransaccion pt = new PantallaTransaccion(); 
+        pt.setVisible(true);
     }//GEN-LAST:event_transaccionAccionPerformedActionPerformed
 
     private void nombrePantallaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_nombrePantallaAncestorAdded
@@ -182,6 +205,11 @@ PantallaUno p1 = new PantallaUno();
        dispose();
       p1.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+RegistroVinculacion rv = new RegistroVinculacion();
+        rv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,6 +260,7 @@ PantallaUno p1 = new PantallaUno();
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel nombrePantalla;
     private javax.swing.JMenuItem transaccionAccionPerformed;
     // End of variables declaration//GEN-END:variables

@@ -10,21 +10,20 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author JOSUE GOMEZ
  */
-public class Registro extends javax.swing.JFrame {
-
+public class RegistroVinculacion extends javax.swing.JFrame {
+PantallaUno p1;
 static ClienteDTO cliente = new ClienteDTO();
 CuentaDAO cl = new CuentaDAO();
 PantallaPrincipal pp;
     /**
      * Creates new form Registro
      */
-    public Registro() {
+    public RegistroVinculacion() {
         pp = new PantallaPrincipal();
         initComponents();
     }
@@ -61,7 +60,7 @@ PantallaPrincipal pp;
         jLabel1.setText("Bienvenido al sistema bancario BANCOMEX");
 
         jLabel2.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel2.setText("Favor de ingresar sus datos");
+        jLabel2.setText("Favor de ingresar sus datos para su nueva cuenta");
 
         jLabel3.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel3.setText("Apellido materno:");
@@ -78,7 +77,7 @@ PantallaPrincipal pp;
         jLabel7.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel7.setText("Fecha de nacimiento:");
 
-        jButton1.setText("Siguiente");
+        jButton1.setText("SIGUIENTE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -119,11 +118,11 @@ PantallaPrincipal pp;
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(apellidoPaternoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(apellidoPaternoTxt)
                             .addComponent(nombreTxt)
-                            .addComponent(apellidoMaternoTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(domicilioTxt)
-                            .addComponent(contraseñaTxt, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(apellidoMaternoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(domicilioTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(contraseñaTxt))))
                 .addGap(314, 314, 314))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -132,11 +131,11 @@ PantallaPrincipal pp;
                         .addComponent(jLabel1)
                         .addGap(191, 191, 191))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(314, 314, 314))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(331, 331, 331))))
+                        .addGap(331, 331, 331))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(235, 235, 235))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(254, 254, 254)
@@ -153,9 +152,9 @@ PantallaPrincipal pp;
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
-                        .addGap(22, 22, 22)
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(nombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,7 +197,7 @@ PantallaPrincipal pp;
     String apellidoMaterno = apellidoMaternoTxt.getText();
     String domicilio = domicilioTxt.getText();
     String contraseña = contraseñaTxt.getText();
-    PantallaUno p1 = new PantallaUno();
+    
     if (cl.restriccionesRegistro(selectedDate, nombre, apellidoPaterno, apellidoMaterno, domicilio)) {
         cliente.setFechaNacimiento(selectedDate.getTime());
         cliente.setNombre(nombre);
@@ -207,20 +206,20 @@ PantallaPrincipal pp;
         cliente.setDomicilio(domicilio);
         cliente.setEdad(cl.calcularEdad(selectedDate.getTime()));
         cliente.setContraseña(contraseña);
+        cliente.setIdCliente(PantallaPrincipal.cliente.getIdCliente());
          try {
-             cl.agregarCuenta(cliente);
-             JOptionPane.showMessageDialog(null, "Registro exitoso!");
+             cl.agregarCuentaVinculacion(cliente);
          } catch (SQLException ex) {
-             Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(RegistroVinculacion.class.getName()).log(Level.SEVERE, null, ex);
          }
+         
         dispose();
-        p1.setVisible(true);
+       
         
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    PantallaUno p1 = new PantallaUno();
         dispose();
    p1.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -242,20 +241,21 @@ PantallaPrincipal pp;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroVinculacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroVinculacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroVinculacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroVinculacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Registro().setVisible(true);
+                new RegistroVinculacion().setVisible(true);
             }
         });
     }

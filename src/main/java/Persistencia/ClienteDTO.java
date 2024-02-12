@@ -19,6 +19,16 @@ public class ClienteDTO {
     public ClienteDTO() {
     }
 
+    public ClienteDTO(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio, String contraseña, int edad) {
+        this.idCliente = idCliente;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.domicilio = domicilio;
+        this.contraseña = contraseña;
+        this.edad = edad;
+    }
+
     public ClienteDTO(int idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio, Date fechaNacimiento, String contraseña, int edad) {
         this.idCliente = idCliente;
         this.nombre = nombre;
@@ -98,4 +108,10 @@ public class ClienteDTO {
     public static ArrayList<ClienteDTO> getClientes() {
         return clientes;
     }
+
+    @Override
+    public String toString() {
+        return "ClienteDTO{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", domicilio=" + domicilio + ", fechaNacimiento=" + fechaNacimiento + ", contrase\u00f1a=" + contraseña + ", edad=" + edad + '}';
+    }
+    
 }

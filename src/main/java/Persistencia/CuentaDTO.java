@@ -67,4 +67,10 @@ public class CuentaDTO {
       public static ArrayList<CuentaDTO> getCuentas() {
         return cuentas;
     }
+
+    @Override
+    public String toString() {
+        return "CuentaDTO{" + "numeroCuenta=" + numeroCuenta + ", fechaApertura=" + fechaApertura + ", saldo=" + saldo + ", idCliente=" + idCliente + '}';
+    }
+      
 }
