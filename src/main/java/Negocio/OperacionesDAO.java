@@ -6,6 +6,7 @@ package Negocio;
 
 import Persistencia.ClienteDTO;
 import Persistencia.CuentaDTO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,11 +21,21 @@ public class OperacionesDAO {
 
     public boolean restriccionesTransaccion(ClienteDTO cliente, String monto) {
 
-        if (Integer.parseInt(monto) > 0 && monto < Integer.parseInt(c.getSaldo())) {
+    float montoFloat = Float.parseFloat(monto);
 
-        }
+    
+    if (montoFloat > 0) {
+       
+return true;
+        
+        }else if (montoFloat < c.getSaldo()) {
+           
+            return true;
+        }else{
         return false;
-
+      
+    }
+    
     }
 
     public void Transaccion() {

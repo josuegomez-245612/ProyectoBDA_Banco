@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Esta clase proporciona métodos para acceder y manipular datos relacionados con cuentas en la base de datos.
+ * La clase se encarga de realizar operaciones como registro de cuentas, inicio de sesión, generación de números de cuenta, etc.
  */
 package Negocio;
 
@@ -21,18 +21,29 @@ import presentacion.PantallaPrincipal;
 import presentacion.Registro;
 
 /**
- *
- * @author JOSUE GOMEZ
+ * La clase CuentaDAO proporciona métodos para acceder y manipular datos relacionados con cuentas en la base de datos.
  */
 public class CuentaDAO {
-
-    public CuentaDAO() {
-    }
 
     Conexion con = new Conexion();
     Registro res;
     public static int NumeroDeCuenta;
 
+    /**
+     * Constructor por defecto de la clase CuentaDAO.
+     */
+    public CuentaDAO() {
+    }
+
+    /**
+     * Verifica las restricciones de registro antes de crear una nueva cuenta.
+     * @param selectedDate la fecha de nacimiento seleccionada por el usuario.
+     * @param nombre el nombre del cliente.
+     * @param apellidoPaterno el apellido paterno del cliente.
+     * @param apellidoMaterno el apellido materno del cliente.
+     * @param domicilio el domicilio del cliente.
+     * @return true si se cumplen todas las restricciones, false de lo contrario.
+     */
     public boolean restriccionesRegistro(Calendar selectedDate, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio) {
         int selectedYear = selectedDate.get(Calendar.YEAR);
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
@@ -51,6 +62,13 @@ public class CuentaDAO {
         return true;
     }
 
+    /**
+     * Verifica las credenciales de inicio de sesión del cliente.
+     * @param numeroCuenta el número de cuenta del cliente.
+     * @param contrasena la contraseña del cliente.
+     * @return un objeto ClienteDTO si las credenciales son correctas, null de lo contrario.
+     * @throws SQLException si ocurre un error al acceder a la base de datos.
+     */
     public ClienteDTO restriccionInicioDeSesion(String numeroCuenta, String contrasena) throws SQLException {
         if (numeroCuenta.isEmpty() || contrasena.isEmpty()) {
             System.out.println("Error: Los campos no pueden estar vacíos.");
@@ -75,8 +93,10 @@ public class CuentaDAO {
     
     
 
-    
-
+    /**
+     * Genera un número de cuenta aleatorio de 8 dígitos.
+     * @return el número de cuenta generado.
+     */
     public static String generarNumeroCuenta() {
         Random random = new Random();
         // Generar un número aleatorio de 8 dígitos
@@ -86,6 +106,11 @@ public class CuentaDAO {
 
     }
 
+    /**
+     * Calcula la edad de una persona a partir de su fecha de nacimiento.
+     * @param fechaNacimiento la fecha de nacimiento de la persona.
+     * @return la edad de la persona.
+     */
     public int calcularEdad(Date fechaNacimiento) {
         Calendar fechaNac = Calendar.getInstance();
         fechaNac.setTime(fechaNacimiento);
@@ -102,6 +127,11 @@ public class CuentaDAO {
         return edad;
     }
 
+    /**
+     * Agrega una nueva cuenta para el cliente especificado.
+     * @param cliente el cliente para el cual se agrega la cuenta.
+     * @throws SQLException si ocurre un error al acceder a la base de datos.
+     */
     public void agregarCuenta(ClienteDTO cliente) throws SQLException {
         try (Connection conn = con.estableceConexion(); PreparedStatement statement = conn.prepareStatement(
                 "INSERT INTO Cliente (Nombre, Apellido_Paterno, Apellido_Materno, Domicilio, Fecha_Nacimiento, Edad, Contraseña) "
@@ -141,6 +171,11 @@ public class CuentaDAO {
         }
     }
 
+    /**
+     * Agrega una cuenta vinculada para el cliente especificado.
+     * @param cliente el cliente para el cual se agrega la cuenta vinculada.
+     * @throws SQLException si ocurre un error al acceder a la base de datos.
+     */
     public void agregarCuentaVinculacion(ClienteDTO cliente) throws SQLException {
         try (Connection conn = con.estableceConexion(); PreparedStatement statement2 = conn.prepareStatement(
                 "INSERT INTO Cuenta (Numero_Cuenta, ID_Cliente, Fecha_Apertura, Saldo) VALUES (?, ?, DEFAULT, DEFAULT)")) {
@@ -157,6 +192,11 @@ public class CuentaDAO {
         }
     }
 
+    /**
+     * Devuelve una lista de números de cuenta asociados al cliente actualmente logueado.
+     * @return una lista de números de cuenta.
+     * @throws SQLException si ocurre un error al acceder a la base de datos.
+     */
     public ArrayList<Integer> devolverListaNumeroCuentas() throws SQLException {
         ArrayList<Integer> listaCuentas = new ArrayList();
 

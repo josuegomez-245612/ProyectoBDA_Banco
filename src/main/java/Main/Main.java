@@ -8,7 +8,7 @@ import presentacion.PantallaUno;
 
 /**
  *
- * @author RAUL EDUARDO GOMEZ
+ * @author JOSUE GOMEZ
  */
 public class Main {
 

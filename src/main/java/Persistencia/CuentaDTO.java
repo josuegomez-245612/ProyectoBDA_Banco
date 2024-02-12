@@ -16,11 +16,11 @@ public class CuentaDTO {
       private static ArrayList<CuentaDTO> cuentas = new ArrayList<>();
   private int numeroCuenta;
     private Date fechaApertura;
-    private BigDecimal saldo;
+    private float saldo;
     private int idCliente;
 
     // Constructor
-    public CuentaDTO(int numeroCuenta, Date fechaApertura, BigDecimal saldo, int idCliente) {
+    public CuentaDTO(int numeroCuenta, Date fechaApertura, float saldo, int idCliente) {
         this.numeroCuenta = numeroCuenta;
         this.fechaApertura = fechaApertura;
         this.saldo = saldo;
@@ -48,11 +48,11 @@ public class CuentaDTO {
         this.fechaApertura = fechaApertura;
     }
 
-    public BigDecimal getSaldo() {
+    public float getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(BigDecimal saldo) {
+    public void setSaldo(float saldo) {
         this.saldo = saldo;
     }
 

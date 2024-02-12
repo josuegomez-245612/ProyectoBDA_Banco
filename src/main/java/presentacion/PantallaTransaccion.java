@@ -2,6 +2,7 @@
 package presentacion;
 
 import Negocio.CuentaDAO;
+import Negocio.OperacionesDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +35,7 @@ CuentaDAO cd = new CuentaDAO();
 
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        MontoTexto = new javax.swing.JTextField();
+        MontoTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -51,14 +52,14 @@ CuentaDAO cd = new CuentaDAO();
         jLabel5.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jLabel5.setText("Numero de cuenta a depositar:");
 
-        MontoTexto.addActionListener(new java.awt.event.ActionListener() {
+        MontoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MontoTextoActionPerformed(evt);
+                MontoTxtActionPerformed(evt);
             }
         });
-        MontoTexto.addKeyListener(new java.awt.event.KeyAdapter() {
+        MontoTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                MontoTextoKeyTyped(evt);
+                MontoTxtKeyTyped(evt);
             }
         });
 
@@ -128,7 +129,7 @@ CuentaDAO cd = new CuentaDAO();
                                         .addComponent(jLabel4))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(MontoTexto)
+                                        .addComponent(MontoTxt)
                                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addContainerGap(570, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -154,7 +155,7 @@ CuentaDAO cd = new CuentaDAO();
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(MontoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(MontoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,11 +180,11 @@ CuentaDAO cd = new CuentaDAO();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MontoTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoTextoActionPerformed
+    private void MontoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MontoTxtActionPerformed
 
-    }//GEN-LAST:event_MontoTextoActionPerformed
+    }//GEN-LAST:event_MontoTxtActionPerformed
 
-    private void MontoTextoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MontoTextoKeyTyped
+    private void MontoTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MontoTxtKeyTyped
        char c = evt.getKeyChar();
 
    
@@ -191,10 +192,11 @@ CuentaDAO cd = new CuentaDAO();
         JOptionPane.showMessageDialog(null, "Ingresa un caracter valido.");
         evt.consume(); 
  }    
-    }//GEN-LAST:event_MontoTextoKeyTyped
+    }//GEN-LAST:event_MontoTxtKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
+      OperacionesDAO od = new OperacionesDAO();
+      od.restriccionesTransaccion(cliente, MontoTxt);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -255,7 +257,7 @@ public void llenarComboBox(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField MontoTexto;
+    private javax.swing.JTextField MontoTxt;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<Integer> jComboBox2;
