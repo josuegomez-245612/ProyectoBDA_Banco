@@ -196,7 +196,7 @@ CuentaDAO cd = new CuentaDAO();
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       OperacionesDAO od = new OperacionesDAO();
-      od.restriccionesTransaccion(cliente, MontoTxt);
+//      od.restriccionesTransaccion(cliente, MontoTxt);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

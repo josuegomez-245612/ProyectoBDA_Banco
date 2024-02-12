@@ -1,7 +1,4 @@
-/*
- * Esta clase proporciona métodos para acceder y manipular datos relacionados con cuentas en la base de datos.
- * La clase se encarga de realizar operaciones como registro de cuentas, inicio de sesión, generación de números de cuenta, etc.
- */
+
 package Negocio;
 
 import Persistencia.ClienteDTO;
@@ -21,6 +18,7 @@ import presentacion.PantallaPrincipal;
 import presentacion.Registro;
 
 /**
+ * @author JOSUE GOMEZ
  * La clase CuentaDAO proporciona métodos para acceder y manipular datos relacionados con cuentas en la base de datos.
  */
 public class CuentaDAO {
