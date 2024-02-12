@@ -5,6 +5,7 @@
 package Negocio;
 
 import Persistencia.ClienteDTO;
+import Persistencia.CuentaDTO;
 
 /**
  *
@@ -12,14 +13,21 @@ import Persistencia.ClienteDTO;
  */
 public class OperacionesDAO {
 
+    CuentaDTO c = new CuentaDTO();
+
     public OperacionesDAO() {
     }
-    public boolean restriccionesTransaccion(ClienteDTO cliente, String monto){
-        
+
+    public boolean restriccionesTransaccion(ClienteDTO cliente, String monto) {
+
+        if (Integer.parseInt(monto) > 0 && monto < Integer.parseInt(c.getSaldo())) {
+
+        }
         return false;
-        
+
     }
-    public void Transaccion(){
-        
+
+    public void Transaccion() {
+
     }
 }
