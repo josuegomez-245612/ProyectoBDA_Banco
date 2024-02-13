@@ -188,7 +188,7 @@ public static ClienteDTO cliente = new ClienteDTO();
     }//GEN-LAST:event_transaccionAccionPerformedActionPerformed
 
     private void nombrePantallaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_nombrePantallaAncestorAdded
-       nombrePantalla.setText(Registro.cliente.getNombre());
+       nombrePantalla.setText(cliente.getNombre());
     }//GEN-LAST:event_nombrePantallaAncestorAdded
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -198,7 +198,7 @@ public static ClienteDTO cliente = new ClienteDTO();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-      JOptionPane.showMessageDialog(null,"Nombre: " +Registro.cliente.getNombre()+" Numero de cuenta " +CuentaDAO.NumeroDeCuenta);
+      JOptionPane.showMessageDialog(null,cliente.toString());
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed

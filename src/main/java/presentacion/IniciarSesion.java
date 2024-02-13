@@ -23,14 +23,16 @@ import javax.swing.SwingUtilities;
  * @author JOSUE GOMEZ
  */
 public class IniciarSesion extends javax.swing.JFrame {
-CuentaDAO cd = new CuentaDAO();
-PantallaUno p1 = new PantallaUno();
-PantallaPrincipal pp = new PantallaPrincipal();
+
+    CuentaDAO cd = new CuentaDAO();
+    PantallaUno p1 = new PantallaUno();
+    PantallaPrincipal pp = new PantallaPrincipal();
+
     /**
      * Creates new form InicioSesion
      */
     public IniciarSesion() {
-     
+
         setTitle("BANCOMEX");
 
         initComponents();
@@ -167,27 +169,28 @@ PantallaPrincipal pp = new PantallaPrincipal();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       dispose();
-       p1.setVisible(true);
+        dispose();
+        p1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    String numeroCuenta = numeroCuentaTxt.getText();
+        String numeroCuenta = numeroCuentaTxt.getText();
         String contraseña = contraseñaTxt.getText();
-        
-        System.out.println(numeroCuenta+contraseña);
-    try {
-      
-        PantallaPrincipal.cliente = cd.restriccionInicioDeSesion(numeroCuenta, contraseña);
-        if(PantallaPrincipal.cliente != null){
-        dispose();
-        pp.setVisible(true);
-        System.out.println(PantallaPrincipal.cliente.getIdCliente());
-         }
-        
-    } catch (SQLException ex) {
-        Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
-    }
+
+        System.out.println(numeroCuenta + contraseña);
+        try {
+
+            PantallaPrincipal.cliente = cd.restriccionInicioDeSesion(numeroCuenta, contraseña);
+            if (PantallaPrincipal.cliente != null) {
+                dispose();
+                pp.setVisible(true);
+               
+                System.out.println(PantallaPrincipal.cliente.getIdCliente());
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(IniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -239,6 +242,5 @@ PantallaPrincipal pp = new PantallaPrincipal();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField numeroCuentaTxt;
     // End of variables declaration//GEN-END:variables
-
 
 }
