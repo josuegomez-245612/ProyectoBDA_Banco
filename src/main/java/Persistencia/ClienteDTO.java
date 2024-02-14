@@ -215,7 +215,7 @@ public class ClienteDTO {
      */
     @Override
     public String toString() {
-        return "idCliente=" + idCliente + "\n nombre=" + nombre + "\n apellidoPaterno=" + apellidoPaterno + "\n apellidoMaterno=" + apellidoMaterno + "\n domicilio=" + domicilio + "\n fechaNacimiento=" + fechaNacimiento.getDate() +"\n edad=" + edad ;
+        return "idCliente=" + idCliente + "\n nombre=" + nombre + "\n apellidoPaterno=" + apellidoPaterno + "\n apellidoMaterno=" + apellidoMaterno + "\n domicilio=" + domicilio + "\n fechaNacimiento=" + fechaNacimiento.getDay()+"/"+fechaNacimiento.getMonth() +"/" +fechaNacimiento.getYear() +"\n edad=" + edad ;
     }
     
 }

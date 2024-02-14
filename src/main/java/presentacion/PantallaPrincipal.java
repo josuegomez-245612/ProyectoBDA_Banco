@@ -6,6 +6,7 @@ package presentacion;
 
 import Negocio.CuentaDAO;
 import Persistencia.ClienteDTO;
+import static Persistencia.OperacionDTO.operaciones;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -22,6 +23,7 @@ public static ClienteDTO cliente = new ClienteDTO();
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
+        
         initComponents();
     }
 
@@ -39,6 +41,8 @@ public static ClienteDTO cliente = new ClienteDTO();
         nombrePantalla = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableOperaciones = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         transaccionAccionPerformed = new javax.swing.JMenuItem();
@@ -77,6 +81,19 @@ public static ClienteDTO cliente = new ClienteDTO();
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Bienvenido,");
 
+        jTableOperaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Folio Operacion", "Tipo de Operacion", "Monto", "Fecha", "Numero de cuenta"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableOperaciones);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -92,8 +109,11 @@ public static ClienteDTO cliente = new ClienteDTO();
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(178, 178, 178)
-                        .addComponent(jLabel1)))
-                .addContainerGap(321, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +124,9 @@ public static ClienteDTO cliente = new ClienteDTO();
                     .addComponent(jLabel3)
                     .addComponent(nombrePantalla)
                     .addComponent(jLabel5))
-                .addContainerGap(574, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Operaciones");
@@ -118,6 +140,11 @@ public static ClienteDTO cliente = new ClienteDTO();
         jMenu1.add(transaccionAccionPerformed);
 
         jMenuItem4.setText("Operaciones realizadas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
@@ -185,6 +212,7 @@ public static ClienteDTO cliente = new ClienteDTO();
     private void transaccionAccionPerformedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transaccionAccionPerformedActionPerformed
         PantallaTransaccion pt = new PantallaTransaccion(); 
         pt.setVisible(true);
+        
     }//GEN-LAST:event_transaccionAccionPerformedActionPerformed
 
     private void nombrePantallaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_nombrePantallaAncestorAdded
@@ -211,40 +239,12 @@ RegistroVinculacion rv = new RegistroVinculacion();
         rv.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+       PantallaListaOperaciones plo = new PantallaListaOperaciones();
+       plo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PantallaPrincipal().setVisible(true);
-            }
-        });
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -261,6 +261,8 @@ RegistroVinculacion rv = new RegistroVinculacion();
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JTable jTableOperaciones;
     private javax.swing.JLabel nombrePantalla;
     private javax.swing.JMenuItem transaccionAccionPerformed;
     // End of variables declaration//GEN-END:variables

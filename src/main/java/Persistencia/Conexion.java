@@ -31,20 +31,18 @@ public class Conexion {
      */
     public  Connection estableceConexion() {
         try {
-            // Cargar el controlador JDBC
+          
             Class.forName("com.mysql.jdbc.Driver");
 
-            // Establecer la conexión
             conectar = DriverManager.getConnection(cadena, usuario, contraseña);
 
-            // Mostrar mensaje de conexión exitosa
-            JOptionPane.showMessageDialog(null, "Se conectó a la base de datos con éxito");
+           
         } catch (Exception e) {
-            // Manejo de excepciones en caso de error
+          
             JOptionPane.showMessageDialog(null, "No se pudo conectar a la base de datos. Error: " + e.toString());
         }
         
-        // Devolver la conexión (puede ser nula si hubo un error)
+       
         return conectar;
     }
 }

@@ -41,23 +41,34 @@ public class CuentaDAO {
      * @param domicilio el domicilio del cliente.
      * @return true si se cumplen todas las restricciones, false de lo contrario.
      */
-    public boolean restriccionesRegistro(Calendar selectedDate, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio) {
+    public boolean restriccionesRegistro(Calendar selectedDate, String nombre, String apellidoPaterno, String apellidoMaterno, String domicilio, String contrasena) {
         int selectedYear = selectedDate.get(Calendar.YEAR);
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
-        if (selectedDate == null || nombre.trim().isEmpty() || apellidoPaterno.trim().isEmpty() || apellidoMaterno.trim().isEmpty() || domicilio.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(res, "Por favor, complete todos los campos antes de continuar.", "Error", JOptionPane.ERROR_MESSAGE);
+        // Verificar si la fecha de nacimiento no ha sido seleccionada
+        if (selectedYear == 0 || nombre.trim().isEmpty() || apellidoPaterno.trim().isEmpty() || apellidoMaterno.trim().isEmpty() || domicilio.trim().isEmpty() || contrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de continuar.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
-        } else if (selectedYear > currentYear) {
-            JOptionPane.showMessageDialog(res, "Por favor, seleccione una fecha válida", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (selectedYear > currentYear) { // Verificar si la fecha de nacimiento es en el futuro
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione una fecha válida", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
-        } else if (nombre.matches(".*\\d.*") || apellidoPaterno.matches(".*\\d.*") || apellidoMaterno.matches(".*\\d.*")) {
-            JOptionPane.showMessageDialog(res, "Los campos de nombre y apellidos no deben contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (nombre.matches(".*\\d.*") || apellidoPaterno.matches(".*\\d.*") || apellidoMaterno.matches(".*\\d.*")) { // Verificar si nombre o apellidos contienen números
+            JOptionPane.showMessageDialog(null, "Los campos de nombre y apellidos no deben contener números.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
+        } else { // Verificar si la persona es mayor o igual a 18 años
+            // Calcular la edad
+            int edad = currentYear - selectedYear;
+
+            // Verificar si la edad es menor que 18
+            if (edad < 18) {
+                JOptionPane.showMessageDialog(null, "La persona debe tener al menos 18 años de edad.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
         }
 
         return true;
     }
+
 
     /**
      * Verifica las credenciales de inicio de sesión del cliente.
@@ -68,7 +79,7 @@ public class CuentaDAO {
      */
     public ClienteDTO restriccionInicioDeSesion(String numeroCuenta, String contrasena) throws SQLException {
         if (numeroCuenta.isEmpty() || contrasena.isEmpty()) {
-            System.out.println("Error: Los campos no pueden estar vacíos.");
+            JOptionPane.showMessageDialog(null,"Error: Los campos no pueden estar vacíos.");
             return null;
         }
 
@@ -82,7 +93,7 @@ public class CuentaDAO {
 
                     return new ClienteDTO(rs.getInt("ID_Cliente"), rs.getString("Nombre"), rs.getString("Apellido_Paterno"), rs.getString("Apellido_Materno"), rs.getString("Domicilio"), rs.getTimestamp("Fecha_Nacimiento"), rs.getString("Contraseña"), rs.getInt("Edad")); // Credenciales correctas
                 } else {
-                    System.out.println("Las credenciales son incorrectas.");
+                    JOptionPane.showMessageDialog(null,"Las credenciales son incorrectas.");
                     return null;
                 }
             }
